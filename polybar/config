@@ -1,0 +1,426 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+; config for i3 by Anushasan Poudel
+; www.github.com/beinganushasan
+; www.anushasanpoudel.com.np
+
+;
+;==========================================================
+;
+[colors]
+;background = ${xrdb:color0:#222}
+background = #1d1f2a
+background-underline = #E3D9C6
+background-alt = #282c3400
+;foreground = ${xrdb:color7:#222}
+foreground = #E3D9C6
+foreground-alt = #E3D9C6
+;foreground-alt = #555
+primary = #f900ef
+secondary = #e60053
+alert = #bd2c40
+
+[bar/default]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 20
+;offset-x = 1%
+;offset-y = 1%
+radius = 10
+fixed-center = true
+
+background = ${colors.background}
+foreground = #E3D9C6
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #1d1f2a
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left =
+module-margin-right =
+
+font-0 = JetBrains Extra Bold:pixel size=14;2
+font-1 = MaterialIcons:size=14;2
+font-2 = Termsynu:size=14:antialias=false;-2
+font-3 = FontAwesome:size=14;3
+
+
+modules-left = powermenu i3 title
+modules-center =
+modules-right = battery temperature filesystem memory cpu date
+
+tray-position = center
+tray-padding = 2
+tray-radius = 10
+tray-background =  #1d1f2a
+tray-foreground = #8F4E35
+
+;wm-restack = bspwm
+;wm-restack = i3
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = false
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+reverse-scroll = false
+fuzzy-match = false
+;strip-wsnumbers = true  ;This will split the workspace name on ':'
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;♟
+ws-icon-8 = 9;♟
+ws-icon-default = ♟
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = true
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-foreground = #1d1f2a
+label-focused-background = #fea104
+label-focused-underline=
+label-focused-padding = 2
+; unfocused = Inactive workspace on any monitor
+
+label-unfocused = %icon%
+label-unfocused-foreground = #E3D9C6
+label-unfocused-background = #757575
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %icon%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = 2
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+; Separator in between workspaces
+label-separator = :)
+
+
+
+
+[module/memory]
+type = internal/memory
+interval = 1
+format-prefix =
+format-prefix-foreground =
+format-underline =
+format-background =  #1d1f2a
+format-foreground =  #E3D9C6
+format-padding = 2
+label = %gb_used% of %gb_total%
+
+
+
+[module/title]
+type = internal/xwindow
+
+format = <label>
+format-background =  #1d1f2a
+format-foreground =  #E3D9C6
+format-padding = 1
+label = %title%
+label-maxlen = 30
+label-empty = Empty Page Asshole
+;label-empty-foreground = #707880
+
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+mount-0 = /
+label-mounted = %used% of %total%
+;label-mounted = %mountpoint% : %used% of %total%
+label-unmounted = %mountpoint% not mounted
+;label-unmounted-foreground =  #282c34
+label-underline =
+format-mounted-underline =
+format-mounted = <label-mounted>
+format-mounted-foreground =  #E3D9C6
+format-mounted-background = #1d1f2a
+format-mounted-padding = 4
+
+[module/battery]
+type = internal/battery
+
+full-at = 97
+
+battery = BAT0
+adapter = ADP1
+
+poll-interval = 2
+time-format = %I:%M
+
+format-charging = <animation-charging> <label-charging>
+format-charging-background =   #1d1f2a
+format-charging-foreground = #10c600
+format-charging-underline =
+format-charging-padding =
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-background =   #1d1f2a
+format-discharging-foreground = #ff9508
+format-discharging-underline =
+format-discharging-padding =
+
+label-charging = %percentage%%
+label-discharging = %percentage%%
+
+label-full = " "
+label-full-background =  #1d1f2a
+label-full-foreground =  #10c600
+label-full-underline =
+label-full-padding = 0
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
+ramp-capacity-10 = 
+
+animation-charging-0 = ""
+animation-charging-1 = ""
+animation-charging-2 = ""
+animation-charging-3 = ""
+animation-charging-4 = ""
+animation-charging-5 = ""
+
+animation-charging-framerate = 750
+
+
+[module/backlight-acpi]
+;inherit = module/xbacklight
+type = internal/backlight
+card = amd_backlight
+label =  %percentage%%
+
+
+[module/arrow1]
+; grey to Blue
+type = custom/text
+content = "%{T2}%{T-}"
+content-font = 2
+content-foreground = #8d62a9
+content-background = #292d3e
+
+
+
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+format-prefix =
+format-foregroud = ##E3D9C6
+format-padding = 4
+format-background =  #1d1f2a
+format-prefix-foreground = #8F4E35
+format-underline =
+
+
+
+label = %percentage:2%%
+
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 65
+
+format-prefix=
+format-prefix-foreground =
+format-padding = 4
+format-foreground = #E3D9C6
+format-background = #1d1f2a
+format = <ramp> <label>
+format-underline =
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = #ff0f00
+
+ramp-0 =
+ramp-1 =
+ramp-2 =
+ramp-foreground = #0ba10d
+
+
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline = #9f78e1
+format-foreground = #9f78e1
+label-connected = %essid%
+label-NAME-foreground =  #9f78e1
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground =  #9f78e1
+
+[module/eth]
+type = internal/network
+interface = enp1s0
+interval = 3.0
+
+format-connected-underline = #55aa55
+;format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 1
+date =%b-%d(%a)
+date-alt =%b-%d(%a)
+time = %r
+time-alt =%r
+format-prefix =
+format-prefix-padding =
+format-prefix-foreground =
+format-foreground = #E3D9C6
+format-background =  #1d1f2a
+format-padding = 2
+format-underline =
+label = %date% %time%
+
+
+
+
+;[module/bspwm]
+;type = internal/bspwm
+;
+;label-focused = %index%
+;label-focused-background = ${colors.background-alt}
+;label-focused-underline= ${colors.primary}
+;label-focused-padding = 2
+;
+;label-occupied = %index%
+;label-occupied-padding = 2
+;
+;label-urgent = %index%!
+;label-urgent-background = ${colors.alert}
+;label-urgent-padding = 2
+;
+;label-empty = %index%
+;label-empty-foreground = ${colors.foreground-alt}
+;label-empty-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+[module/xbacklight]
+type = internal/xbacklight
+;
+format = <label> <bar>
+label = BL
+;
+bar-width = 10
+bar-indicator = |
+bar-indicator-foreground = #fff
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground-alt}
+
+
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = shutdown
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = back
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = systemctl reboot
+
+menu-2-0 = shutdown
+menu-2-0-exec = systemctl poweroff
+menu-2-1 = back
+menu-2-1-exec = menu-open-0
+
+format-spacing = 1
+format-background = #fe0505
+format-foreground = #1d1f2a
+format-padding = 2
+
+label-open = ""
+label-close = ""
+label-separator = :((
